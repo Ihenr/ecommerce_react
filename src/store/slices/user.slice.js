@@ -62,6 +62,6 @@ const userSlice = createSlice({
   },
 });
 
-export const { updateUserData, updateToken, loginIn, reset } = userSlice.actions;
+export const { updateUserData, updateToken, loginIn, reset } = userSlice.actions; // exportar las acciones
 
 export default userSlice.reducer;

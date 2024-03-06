@@ -6,6 +6,7 @@ import Purchanse from '../views/Purchanse';
 import ProductDetail from '../views/ProductDetail';
 import NotFound from '../views/NotFound';
 import ProtecteRoute from '../components/common/ProtecteRoute';
+import { loaderHome } from './loaders/loaderHome';
 
 export const router = createBrowserRouter([
   // Add your routes here
@@ -15,6 +16,7 @@ export const router = createBrowserRouter([
       {
         path: '/',
         element: <Home />,
+        loader: loaderHome,
       },
       {
         path: '/login',
