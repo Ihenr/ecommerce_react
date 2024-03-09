@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { reset } from '../store/slices/user.slice';
 import { Form, useLoaderData } from 'react-router-dom';
@@ -7,15 +7,22 @@ import ProductCard from '../components/common/ProductCard';
 const Home = () => {
   const dispatch = useDispatch();
   const isLogged = useSelector((state) => state.user.isLogged);
-  const { products, categories, category } = useLoaderData();
+  const { products, categories, category, title } = useLoaderData();
   const [categoryValue, setCategoryValue] = useState(category ?? null);
 
-  const [nameValue, setNameValue] = useState('');
+  const [nameValue, setNameValue] = useState(title ?? '');
 
   const handleChangeName = (e) => {
     setNameValue(e.target.value);
     setCategoryValue(null);
   };
+
+  useEffect(() => {
+    setCategoryValue(category);
+  }, [category]);
+  useEffect(() => {
+    setNameValue(title);
+  }, [title]);
 
   return (
     <div>
@@ -27,7 +34,7 @@ const Home = () => {
           <div>
             <input
               type="search"
-              name="query"
+              name="title"
               value={nameValue}
               onChange={handleChangeName}
               placeholder="typeProduct"
@@ -77,6 +84,7 @@ const Home = () => {
             <ProductCard key={product.id} product={product} />
           ))}
         </ul>
+        {!products.length && <p> No product matches the search "{nameValue}"</p>}
       </section>
     </div>
   );

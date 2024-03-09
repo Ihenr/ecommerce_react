@@ -7,11 +7,14 @@ export const loaderHome = async ({ request }) => {
 
   const url = new URL(request.url);
   const categoryId = url.searchParams.get('category');
+  const title = url.searchParams.get('title'); // para buscar  por nombre ingresado en el input
 
   let products;
 
   if (categoryId) {
     products = await getAllProducts({ category: categoryId });
+  } else if (title) {
+    products = await getAllProducts({ query: title });
   } else {
     products = await getAllProducts();
   }
@@ -20,5 +23,6 @@ export const loaderHome = async ({ request }) => {
     products,
     categories,
     category: categories.find((x) => x.id.toString() === categoryId),
+    title,
   };
 };
