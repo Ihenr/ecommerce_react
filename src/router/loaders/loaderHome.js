@@ -11,10 +11,12 @@ export const loaderHome = async ({ request }) => {
 
   let products;
 
-  if (categoryId) {
-    products = await getAllProducts({ category: categoryId });
+  if (categoryId && title) {
+    products = await getAllProducts({ categoryId, title });
   } else if (title) {
-    products = await getAllProducts({ query: title });
+    products = await getAllProducts({ title });
+  } else if (categoryId) {
+    products = await getAllProducts({ categoryId });
   } else {
     products = await getAllProducts();
   }

@@ -5,7 +5,7 @@ export const getAllProducts = async (params) => {
     const res = await axiosInstance.get('products', {
       params,
     });
-    return res.data.data.products;
+    return res.data;
   } catch (error) {
     console.error(error);
   }

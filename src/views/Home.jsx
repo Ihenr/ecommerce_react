@@ -14,7 +14,6 @@ const Home = () => {
 
   const handleChangeName = (e) => {
     setNameValue(e.target.value);
-    setCategoryValue(null);
   };
 
   useEffect(() => {
@@ -62,7 +61,6 @@ const Home = () => {
                   id={category.id + category.name}
                   onChange={() => {
                     setCategoryValue(category);
-                    setNameValue('');
                   }}
                   style={{ display: 'none' }}
                 />
@@ -84,7 +82,7 @@ const Home = () => {
             <ProductCard key={product.id} product={product} />
           ))}
         </ul>
-        {!products.length && <p> No product matches the search "{nameValue}"</p>}
+        {!products.length && <p> `No product matches the search {nameValue} ` </p>}
       </section>
     </div>
   );

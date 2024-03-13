@@ -1,9 +1,12 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 // import { Link } from 'react-router-dom';
 
 const ProductCard = ({ product }) => {
   const navigate = useNavigate();
+
+  const { isLogged, token } = useSelector((state) => state.user);
 
   const handleAddProductBtn = (e) => {
     e.stopPropagation();
@@ -16,9 +19,10 @@ const ProductCard = ({ product }) => {
       className=" cursor-pointer"
     >
       <div className=" max-w-[250px]">
-        <img src={product.productImgs[0]} alt={product.title} />
+        <img src={product.images[0].url} alt={product.title} />
       </div>
       <div>
+        <p>{product.brand}</p>
         <h2 className="text-semibold text-xl">{product.title}</h2>
         <div>
           <h3>Price</h3>
