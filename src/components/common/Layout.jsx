@@ -1,9 +1,19 @@
-import React, { useState } from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { useState } from 'react';
+import { Link, Outlet, useNavigate } from 'react-router-dom';
 import Cart from './Cart';
+import { useSelector } from 'react-redux';
 
 const Layout = () => {
+  const navigate = useNavigate();
   const [isCartVisible, setIsCartVisible] = useState(false);
+
+  //vemos si el usuario esta logeado
+  const isLogged = useSelector((state) => state.user.isLogged);
+
+  const cartHandleClick = () => {
+    if (isLogged) setIsCartVisible(!isCartVisible);
+    else navigate('/login');
+  };
 
   return (
     <>
@@ -18,10 +28,12 @@ const Layout = () => {
                 <i className="bx bxs-purchase-tag"></i>
               </Link>
             </li>
+
             <li>
               <button
                 className="text-4xl"
-                onClick={() => setIsCartVisible(!isCartVisible)}
+                // onClick={() => setIsCartVisible(!isCartVisible)}
+                onClick={cartHandleClick}
               >
                 <i className="bx bxs-cart-alt"></i>
               </button>
@@ -29,9 +41,11 @@ const Layout = () => {
           </ul>
         </nav>
       </header>
+
       <main>
         <Outlet />
       </main>
+
       <footer>footer</footer>
       <Cart isVisible={isCartVisible} />
     </>

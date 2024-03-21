@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { getCart } from '../../services/getCart';
 import { addToCart } from '../../services/addToCart';
+import { deleteFromCart } from '../../services/deleteFromCart';
 
 const initialState = {
   products: [],
@@ -40,7 +41,15 @@ export const addProductToCart =
     dispatch(setCartLoading(true));
 
     await addToCart({ token, quantity, productId });
+
     dispatch(loadCardProducts(token));
   };
-
+// Eliminar productos del carrito
+export const deleteProductFromCart =
+  ({ token, cartProductId }) =>
+  async (dispatch) => {
+    dispatch(setCartLoading(true));
+    await deleteFromCart({ token, cartProductId });
+    dispatch(loadCardProducts(token));
+  };
 export default cartSlice.reducer;

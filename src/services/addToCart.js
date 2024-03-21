@@ -3,7 +3,6 @@ import { axiosInstance } from '../api/axiosInstance';
 export const addToCart = async ({ token, quantity, productId }) => {
   try {
     const data = {
-      //quantity:quantity
       quantity,
       productId,
     };
@@ -11,6 +10,6 @@ export const addToCart = async ({ token, quantity, productId }) => {
       headers: { Authorization: `Bearer ${token}` },
     });
   } catch (error) {
-    console.error(error);
+    console.error('Error al agregar producto al carrito:', error);
   }
 };
