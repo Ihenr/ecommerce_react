@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { loadCardProducts } from '../../store/slices/cart.slice';
+import { buyCart, loadCardProducts } from '../../store/slices/cart.slice';
 import CartProduct from './CartProduct';
 
 const Cart = ({ isVisible }) => {
@@ -8,6 +8,11 @@ const Cart = ({ isVisible }) => {
   const token = useSelector((state) => state.user.token);
   const cart = useSelector((state) => state.cart);
   const toggleTransform = isVisible ? 'translate-x-0' : 'translate-x-full';
+
+  const total = cart.products.reduce(
+    (sum, product) => sum + product.quantity * Number(product.price),
+    0,
+  );
 
   useEffect(() => {
     //Ejecutar carga de los productos del carrito
@@ -41,9 +46,13 @@ const Cart = ({ isVisible }) => {
 
         <section>
           <p className="flex flex-row justify-between">
-            <span>Total: </span> <span>$8000</span>
+            <span>Total: </span> <span>${total}</span>
           </p>
-          <button className="w-full bg-orange-400 py-3 px-2 text-white font-bold">
+          <button
+            className="w-full bg-orange-400 py-3 px-2 text-white font-bold"
+            disabled={!cart.products.length}
+            onClick={() => dispatch(buyCart(token))}
+          >
             Buy products
           </button>
         </section>

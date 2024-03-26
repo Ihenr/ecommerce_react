@@ -2,6 +2,8 @@ import { createSlice } from '@reduxjs/toolkit';
 import { getCart } from '../../services/getCart';
 import { addToCart } from '../../services/addToCart';
 import { deleteFromCart } from '../../services/deleteFromCart';
+import { updateQuantityCart } from '../../services/updateQuantityCart';
+import { createPurchase } from '../../services/createPurchase';
 
 const initialState = {
   products: [],
@@ -52,4 +54,20 @@ export const deleteProductFromCart =
     await deleteFromCart({ token, cartProductId });
     dispatch(loadCardProducts(token));
   };
+
+// Actualizar la cantidad de productos en el carrito
+export const updateQuantityProductCart =
+  ({ token, cartProductId, quantity }) =>
+  async (dispatch) => {
+    dispatch(setCartLoading(true));
+    await updateQuantityCart({ token, cartProductId, quantity });
+    dispatch(loadCardProducts(token));
+  };
+
+//comprar productos
+export const buyCart = (token) => async (dispatch) => {
+  dispatch(setCartLoading(true));
+  await createPurchase(token);
+  dispatch(loadCardProducts(token));
+};
 export default cartSlice.reducer;
