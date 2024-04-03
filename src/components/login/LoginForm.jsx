@@ -75,8 +75,8 @@ const LoginForm = () => {
 
   return (
     <>
-      <form onSubmit={handleSubmit} onChange={handleChange}>
-        <div>
+      <form onSubmit={handleSubmit} onChange={handleChange} className="p-3">
+        <div className="flex flex-col w-full">
           <label htmlFor="emailId">Email</label>
           <input
             type="email"
@@ -87,7 +87,7 @@ const LoginForm = () => {
             required
           />
         </div>
-        <div>
+        <div className="flex flex-col w-full">
           <label htmlFor="passwordId">Password</label>
           <div>
             <input
