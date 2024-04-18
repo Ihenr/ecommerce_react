@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 import Cart from './Cart';
 import { useSelector } from 'react-redux';
+import Footer from './footer/Footer';
 
 const Layout = () => {
   const navigate = useNavigate();
@@ -46,7 +47,7 @@ const Layout = () => {
         <Outlet />
       </main>
 
-      <footer>footer</footer>
+      <Footer />
       <Cart isVisible={isCartVisible} />
     </>
   );

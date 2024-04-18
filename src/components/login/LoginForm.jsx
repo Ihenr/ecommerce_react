@@ -75,7 +75,11 @@ const LoginForm = () => {
 
   return (
     <>
-      <form onSubmit={handleSubmit} onChange={handleChange} className="p-3">
+      <form
+        onSubmit={handleSubmit}
+        onChange={handleChange}
+        className="mt-4 flex flex-col gap-4 w-full"
+      >
         <div className="flex flex-col w-full">
           <label htmlFor="emailId">Email</label>
           <input
@@ -85,24 +89,33 @@ const LoginForm = () => {
             placeholder="example@email.com"
             value={loginFormData.email}
             required
+            className="border-2 border-slate-500 py-2 px-3 rounded-xl"
           />
         </div>
-        <div className="flex flex-col w-full">
+        <div className="flex flex-col w-full ">
           <label htmlFor="passwordId">Password</label>
-          <div>
+          <div className="flex flex-col w-full relative">
             <input
               type={toggleType}
               id="passwordId"
               name="password"
               value={loginFormData.password}
               required
+              placeholder="**************"
+              className="  border-2 border-slate-500 py-2 px-3 rounded-xl"
             />
-            <button type="button" onClick={hangleClickType}>
+            <button
+              type="button"
+              onClick={hangleClickType}
+              className="absolute top-1/2 transform -translate-y-1/2 right-2 text-2xl text-slate-600"
+            >
               <i className={iconClass}></i>
             </button>
           </div>
         </div>
-        <button className=" bg-blue-500 p-2 rounded-md hover:bg-blue-300">Log In</button>
+        <button className=" bg-blue-500 p-2 rounded-md hover:bg-blue-950 hover:text-white uppercase text-zinc-800 font-semibold		">
+          Log In
+        </button>
       </form>
     </>
   );
