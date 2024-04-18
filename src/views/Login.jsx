@@ -7,12 +7,12 @@ import img from '../assets/e-commerce.png';
 const Login = () => {
   const isUserLogged = useSelector((state) => state.user.isLogged);
   return (
-    <div className="h-screen flex flex-col justify-center items-center overflow-hidden ">
-      <div className=" w-1/4 p-6 border-2  relative rounded-xl flex flex-col justify-center items-center shadow-2xl ">
-        <div className="h-24 w-24 border border-r-amber-50 rounded-full p-3 bg-black absolute top-[-50px] ">
+    <div className="h-screen flex flex-col  items-center  z-0  mt-16">
+      <div className=" w-[40%] p-6 border-2  relative rounded-xl flex flex-col justify-center items-center shadow-2xl ">
+        <div className="h-28 w-28 border border-r-amber-50 rounded-full p-3 pb-6 bg-black absolute top-[-50px] ">
           <img src={img} alt="logo" className=""></img>
         </div>
-        <p className="text-2xl py-5">
+        <p className="text-2xl pb-6 pt-12">
           Welcome! Enter your email and Password to continue
         </p>
         <div className=" w-full flex flex-col gap-1 bg-blue-200 rounded-lg p-2 text-[#515151] ">

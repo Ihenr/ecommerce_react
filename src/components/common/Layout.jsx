@@ -18,7 +18,7 @@ const Layout = () => {
 
   return (
     <>
-      <header className="sticky top-0 h-20 p-5 flex flex-row justify-between bg-white border border-b border-gray-400">
+      <header className="sticky top-0 h-20 p-5 flex flex-row justify-between bg-white border border-b border-gray-400 z-10">
         <Link to="/">
           <h1 className="text-3xl text-orange-400 font-semibold">Ecommerce</h1>
         </Link>
